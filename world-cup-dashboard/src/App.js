@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import AppHeader from './components/AppHeader/AppHeader';
+import Dashboard from './pages/DashBoard/DashBoard';
 import './App.css';
 
 class App extends Component {
@@ -7,9 +8,7 @@ class App extends Component {
     return (
       <div className="app">
         <AppHeader />
-        <p className="app-intro">
-          To get started, edit <code>/pages/app.js</code> and save to reload.
-        </p>
+        <Dashboard />
       </div>
     );
   }
