@@ -1,0 +1,10 @@
+.message-area {
+    background-color: lightpink;
+    border: 1px solid hotpink;
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    text-align: center;
+    padding: 1em;
+    border-radius: 1em;
+}
