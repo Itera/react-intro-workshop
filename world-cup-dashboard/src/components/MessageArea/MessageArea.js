@@ -20,10 +20,10 @@ class MessageArea extends Component {
 
   render() {
     return (
-      <div className='message-area'>
+      <div className="message-area">
         Send a message as <strong>{this.props.author}</strong>
         <textarea value={this.state.text} onChange={this.handleOnChange} />
-        <Button onClick={this.handleOnSendMessage} name='Send' />
+        <Button onClick={this.handleOnSendMessage} name="Send" />
       </div>
     );
   }
