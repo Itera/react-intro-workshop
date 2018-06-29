@@ -1,11 +1,11 @@
 import React from 'react';
-import logo from '../../content/logo.svg';
+import footballLogo from '../../content/football.svg';
 import './AppHeader.css';
 
 const AppHeader = () => (
   <header className="app-header">
-    <img src={logo} className="app-logo" alt="logo" />
-    <h1 className="app-title">Welcome to React</h1>
+    <img src={footballLogo} className="app-logo" alt="logo" />
+    <h1 className="app-title">World Cup 2018 Dashboard</h1>
   </header>
 );
 

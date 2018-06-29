@@ -1,0 +1,10 @@
+.goal-counter {
+    background-color: lightsalmon;
+    border: 1px solid salmon;
+    display: flex;
+    justify-content: space-around;
+    width: 250px;
+    text-align: center;
+    padding: 1em;
+    border-radius: 1em;
+}
