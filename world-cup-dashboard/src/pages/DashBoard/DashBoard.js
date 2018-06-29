@@ -14,14 +14,7 @@ class Dashboard extends Component {
     }
   }
 
-  addMessage = message => {
-    this.setState({
-      messages: [
-        ...this.state.messages,
-        message,
-      ],
-    });
-  }
+  addMessage = message => this.setState({ messages: [...this.state.messages, message] });
 
   render() {
     return (
