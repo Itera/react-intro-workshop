@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Title</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle
+
+# Introduksjonskurs til React😃 
+
+---
+
+# Agenda
+
+1. Hva er React?
+2. Hvorfor React? 
+3. Hvordan fungerer React?
+4. Min første komponent
+5. React-komponent med JSX
+6. Sende data med props
+7. Komponent med state
+8. Komponent med state og eventer
+9. Funksjonelle komponenter
+10. Kombinere komponenter
+11. Liste av komponenter
+12. Forskjellig rendring basert på props/state
+13. Lifecycle-metoder
+
+---
+
+# Hva er React?🧐
+
+- JavaScript-rammeverk
+- Brukes til å bygge brukergrensesnitt
+- Deklarativ komponentmodell (ikke imperativ)
+
+<!---
+introdusert i 2013, laget av facebook,
+veldig mye brukt, blitt en slags bransjestandard,
+deklarativ betyr at man utrykker hvordan applikasjonen skal se ut istedenfor å
+gjøre imperative dom-operasjoner hele tiden.
+--->
+
+---
+
+# Hvorfor React?
+
+Hva gjør du dersom du ønsker å gjenbruke denne koden andre steder?
+
+```html
+<div id="counter">0</div>
+<button onclick="incrementCounter()">Trykk på meg</button>
+<script>
+    incrementCounter = () => {
+      let counter = parseInt(document.getElementById("counter").innerHTML);
+      document.getElementById("counter").innerHTML = counter + 1;
+    }
+</script>
+```
+
+React lar oss bygge gjenbrukbare og små komponenter vi kan kombinere sammen!😃
+
+(bilde av nettside brutt ned i komponenter)
+
+---
+
+# Hvordan fungerer React?🤯
+
+- DOM vs virtuell DOM 
+- DOM er imperativ og kostbar
+- Virtuell DOM er deklarativ og lite kostbar
+- React bestemmer når DOM må oppdateres
+
+---
+
+# Min første React-komponent
+
+```html
+<div id="root"></div>
+```
+
+```js
+import {Component, createElement} from 'React';
+import {render} from 'ReactDOM';
+
+class SimpleComponent extends Component {
+  render() {
+    //element type, properties, children
+    return createElement('div', null, 'Hallo på do hehe:P');
+  }
+}
+
+render(SimpleComponent, document.getElementById('root'));
+```
+
+---
+
+# React-komponent med JSX
+
+Slitsomt å skrive funksjonskall med `createElement` hele tiden.
+
+Løsning? HTML i JavaScript! JSX blir syntaktisk sukker.
+
+```js
+render() {
+  return <div>Hallo på do hehe:P</div>;
+}
+
+```
+Dette kompilerer til et createElement-kall.
+
+---
+
+# Sende data med props (1)
+
+La oss utvide vår enkle komponent:
+
+```js
+class SimpleComponent extends Component {
+  render() {
+    return <div>hallo på do {this.props.name} hehe:P</div>;
+  }
+}
+
+render(<SimpleComponent name="Itera" />, document.getElementById('root'));
+```
+
+Tre nye konsepter:
+- definerer komponenten som en elementtype i JSX
+- sender et navn til komponenten via en property kalt `name`
+- aksesserer `name` med `this.props.name` inne i `{}`
+    - alt som er inne i `{}` blir tolket som JavaScript
+
+---
+
+# Sende data med props (2)
+
+Props er:
+- uforanderlige (immutable) 
+
+Ikke lov: `this.props.name = "andreas";`
+
+Det gjør at komponenter som bruker props alltid oppfører seg likt. 
+
+---
+
+# Komponent med state
+
+```js
+class StatefulComponent extends Component {
+  constructor() {
+    this.state = { name: "itera" };
+  }
+
+  render() {
+    return <div>hallo på do {this.props.state} hehe:P</div>;
+  }
+}
+```
+
+- `state` kan endres med `this.setState()`
+    - f.eks: `this.setState({name: "nytt navn"});`
+- oppdatering av `state` gjør at `render` kalles på nytt
+
+---
+
+# Komponent med state og eventer
+
+```js
+class StatefulComponent extends Component {
+  constructor() {
+    this.state = { name: "itera" };
+  }
+
+  handleChange = (event) => {
+    this.setState({name: event.target.value});
+  }
+
+  render() {
+    return (
+      <div>
+        <div>hallo på do {this.props.state} hehe:P</div>;
+        <input value={this.state.name} onChange={this.handleChange} />
+      </div>
+    );
+  }
+}
+
+```
+
+---
+
+# Funksjonelle komponenter
+
+Komponenter uten state kan forenkles til:
+
+```js
+
+function SimpleComponent(props) => (
+  <div>hallo på do {props.name} hehe:P</div>
+);
+// Usage: <SimpleComponent name="hallo" />
+```
+- komponenter uten state er ofte barn av komponenter med state
+
+---
+
+# Kombinere komponenter
+
+---
+
+# Liste av komponenter 
+```js
+function NameList(props) {
+  const names = props.names;
+  const listItems = names.map((name) => 
+    <li key={name}>{name}</li>
+  );
+  return (
+    <ul>{listItems}</ul>
+  );
+};
+
+// Usage: <NameList names={["per, "pål", "og", "espen", "askeladd"]} />
+```
+
+
+---
+
+# Forskjellig rendring basert på props/state
+
+React-komponenter er bare JavaScript! 
+
+---
+
+# Lifecycle-metoder
+
+Stoppeklokke eller noe sånt?
+
+---
+
+# Ressurser/linker
+
+- Konsepter: https://reactjs.org/docs/getting-started.html
+- Praktisk tutorial: https://reactjs.org/tutorial/tutorial.html#what-is-react
+
+    </textarea>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>
