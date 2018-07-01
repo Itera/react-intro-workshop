@@ -5,6 +5,7 @@ We are going to create a dashboard for the FIFA World Cup 2018 where the user ca
 // Todo: Description with an image describing the task
 
 # Setting up
+You need to have a recent version of [Node](https://nodejs.org/en/download/) installed.
 This project uses Yarn as the package manager. In other words, to get the application running you need to have Yarn installed to download the packages we you need.
 
 ## Mac OSX
