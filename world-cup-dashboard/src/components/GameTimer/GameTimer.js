@@ -9,7 +9,11 @@ class GameTimer extends React.Component {
   }
 
   componentDidMount() {
-    setInterval(() => this.tick(), 1000);
+    this.timer = setInterval(() => this.tick(), 1000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timer());
   }
 
   tick = () => this.setState(prevState => ({ seconds: prevState.seconds + 1 }));
