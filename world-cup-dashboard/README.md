@@ -1,4 +1,4 @@
-# !Spoiler Warning!
+# Spoiler Warning!
 If you want to do the tasks from scratch, run `git checkout feat/tasks-without-solution` to switch to a branch without the proposed solutions!
 
 # World Cup Dashboard
