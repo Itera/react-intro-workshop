@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import shortid from 'shortid';
 import './ChatBoard.css';
 
-const ChatBoard = (props) => (
+const ChatBoard = ({title, messages}) => (
   <div className="chat-board">
-    <strong>{props.title}</strong>
+    <strong>{title}</strong>
+    <hr />
     <ul>
-      {props.messages.map(message => (
+      {messages.map(message => (
         <li key={shortid.generate()}>
           <strong>{message.author}: </strong>{message.text}
         </li>

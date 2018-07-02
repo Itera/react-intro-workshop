@@ -13,7 +13,7 @@ class MessageArea extends Component {
     this.setState({ text: '' });
   };
 
-  handleOnChange = (event) => this.setState({ text: event.target.value });
+  handleOnChange = event => this.setState({ text: event.target.value });
 
   render() {
     return (
