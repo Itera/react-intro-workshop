@@ -1,3 +1,6 @@
+# !Spoiler Warning!
+If you want to do the tasks from scratch, run `git checkout feat/tasks-without-solution` to switch to a branch without the proposed solutions!
+
 # World Cup Dashboard
 
 The FIFA-committee needs your help! They just realized they have no production dashboard for the World Cup 2018 matches, yikes!
