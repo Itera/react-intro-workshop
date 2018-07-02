@@ -1,8 +1,6 @@
 # react-intro-workshop
 
-We are going to create a dashboard for the FIFA World Cup 2018 where the user can administrate various things!
-
-// Todo: Description with an image describing the task
+We are going to create a dashboard for the FIFA World Cup 2018!
 
 # Setting up
 You need to have a recent version of [Node](https://nodejs.org/en/download/) installed.
