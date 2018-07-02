@@ -86,7 +86,8 @@ Instead of displaying hard coded messages, one should be able to post new messag
 `{ author: 'Bob', text: 'Hei' }`
 * Include `<MessageArea />` in `<DashBoard />`, e.g. `<MessageArea onSendMessage={this.yourFunction} author="Kristoffer" />`. 
 * In `<DashBoard />`, use it's <strong>state</strong> to store the messages and pass them to `<ChatBoard />` instead of hard coding them.
-* When `onSendMessage` in `<MessageArea />` is called, it should add the message object to `<DashBoard />`'s messages.
+* When `onSendMessage` is called, it should add the message object to `<DashBoard />`'s messages.
+* Create two copies of `<MessageArea />` with different authors and display the messages sent.
 
 ## Task 8 - Show video using using third-party component; ``ReactPlayer``
 The committee have found a third-party library, `react-player` to display their videos. The library can be found here:
