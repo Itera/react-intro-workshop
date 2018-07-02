@@ -54,20 +54,19 @@ in `<DashBoard />'s` render function.
 
 The committee needs a way of counting the goals of each team in the matches.
 
-* The component requires a team name to be displayed using <strong>props</strong>.
+* The component requires a `team` name to be displayed using <strong>props</strong>.
 * The component should count the goals using <strong>state</strong>.
 * By pressing an increment ``<Button />`` or a decrement ``<Button />`` the amount of goals should be updated.
 
 Render two copies of the component to display the score between Brazil and Mexico in ```<DashBoard />```
-
 
 ## Task 5 - ``<ChatBoard />``
 ![Chat board](src/content/chat_board.png?raw=true "Chat board")
 
 The committee wants to display all the messages that are sent in to the stream with the author prefixed! Additionally, it's also wanted to change the title of the chat based on the game.
 
-* `<ChatBoard />` requires a title of the chat.
-* `<ChatBoard />` requires an <strong>array</strong> of <strong>messages</strong> with objects containing the author of the message, and the text itself. E.g
+* `<ChatBoard />` requires a `title` of the chat.
+* `<ChatBoard />` requires the prop `messages`, an <strong>array</strong> of objects containing the author of the message, and the text itself. E.g
 `{author: 'Kåre', text: 'Hei'}`
 * `<ChatBoard />` doesn't require any state and can be created as a functional component.
 
@@ -82,15 +81,29 @@ The live chat can take up much real-estate of the screen, and it's not always re
 
 Instead of displaying hard coded messages, one should be able to post new messages. 
 
-* `<MessageArea />` requires <strong>author</strong> to be included in <strong>props</strong>.
-* `<MessageArea />` requires <strong>onSendMessage</strong>(function) to be included in <strong>props</strong>. This function should return objects with author and the text inputted on send. E.g
+* `<MessageArea />` requires `author` to be included in <strong>props</strong>.
+* `<MessageArea />` requires `onSendMessage`(function) to be included in <strong>props</strong>. This function should return objects with author and the text inputted on send. E.g
 `{ author: 'Bob', text: 'Hei' }`
 * Include `<MessageArea />` in `<DashBoard />`, e.g. `<MessageArea onSendMessage={this.yourFunction} author="Kristoffer" />`. 
 * In `<DashBoard />`, use it's <strong>state</strong> to store the messages and pass them to `<ChatBoard />` instead of hard coding them.
 * When `onSendMessage` in `<MessageArea />` is called, it should add the message object to `<DashBoard />`'s messages.
 
 ## Task 8 - Show video using using third-party component; ``ReactPlayer``
+The committee have found a third-party library, `react-player` to display their videos. The library can be found here:
 https://www.npmjs.com/package/react-player
+
+* Make use `yarn add` and add react-player to the project's dependecies.
+* Import the third-party component and render an embedded youtube video in `<DashBoard />` .
 
 ## Task 9 - ``<GameTimer />``
 ![Game timer](src/content/game_timer.png?raw=true "Game timer") 
+Use <strong>state</strong> to tick each second to display minutes and seconds elapsed in the game.
+
+Remember to clear up the timer on unmount;
+
+```  
+componentWillUnmount() {
+    clearInterval(this.timer());
+}
+```
+
