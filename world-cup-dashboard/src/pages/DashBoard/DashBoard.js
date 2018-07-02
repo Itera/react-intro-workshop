@@ -21,16 +21,16 @@ class Dashboard extends Component {
     return (
       <div className="dashboard-container">
         <div className="dashboard-header">
-          <GoalCounter team="Spain" />
-          <GameTimer />
           <GoalCounter team="Germany" />
+          <GameTimer />
+          <GoalCounter team="Brazil" />
         </div>
         <div className="media-container">
           <ReactPlayer
             width={720}
             height={480}
             className="screen"
-            url="https://youtu.be/ArI94Pmpudw"
+            url="https://www.youtube.com/watch?v=3HG7lcKh3w4"
             controls
             playing
           />
