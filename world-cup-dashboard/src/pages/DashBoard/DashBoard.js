@@ -33,7 +33,7 @@ class Dashboard extends Component {
             width={720}
             height={480}
             className="screen"
-            url="https://www.youtube.com/watch?v=zvrO5rDo0gw"
+            url="https://youtu.be/ArI94Pmpudw"
             controls
             playing
           />
