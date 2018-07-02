@@ -58,7 +58,7 @@ gjøre imperative dom-operasjoner hele tiden.
 
 ---
 
-# Hvorfor React?
+# Hvorfor React? (1)
 
 Hva gjør du dersom du ønsker å gjenbruke denne koden andre steder?
 
@@ -75,7 +75,11 @@ Hva gjør du dersom du ønsker å gjenbruke denne koden andre steder?
 
 React lar oss bygge gjenbrukbare og små komponenter vi kan kombinere sammen!😃
 
-(bilde av nettside brutt ned i komponenter)
+---
+
+# Hvorfor React? (2)
+
+![alt text](images/comp_hierarchy.png)
 
 ---
 
@@ -220,7 +224,30 @@ function SimpleComponent(props) => (
 
 ---
 
-# Kombinere komponenter
+# Gjenbruke og kombinere komponenter
+
+```js
+function Company({company}) => (
+  <div>You work in {company}</div>
+);
+
+function Hello({name, company}) => (
+  <Fragment>
+    <div>Hello, {name}!</div>
+    <Company company={company} />
+  </Fragment>
+);
+
+function HelloApp() {
+  return (
+    <Fragment>
+      <Hello name="Andreas" company="Staten" />
+      <Hello name="Kristoffer" company="Itera" />
+      <Hello name="Per" company="Facebook" />
+    </Fragment>
+  );
+};
+```
 
 ---
 
@@ -246,11 +273,62 @@ function NameList(props) {
 
 React-komponenter er bare JavaScript! 
 
+```js
+
+function Greeting({isLoggedIn}) {
+  if (isLoggedIn) {
+    return <UserGreeting />;
+  }
+  return <GuestGreeting />;
+}
+
+```
+
+---
+
+# Forskjellig rendring basert på props/state (2)
+
+```js
+function Mailbox({unreadMessages}) {
+  return (
+    <div>
+      <h1>Hello!</h1>
+      {unreadMessages.length > 0 &&
+        <h2>
+          You have {unreadMessages.length} unread messages.
+        </h2>
+      }
+    </div>
+  );
+}
+```
+
+---
+
+# Forskjellig rendring basert på props/state (3)
+
+```js
+function WarningBanner({warn}) {
+  if (!warn) {
+    return null;
+  }
+
+  return (
+    <div className="warning">
+      Warning!
+    </div>
+  );
+}
+
+```
+
 ---
 
 # Lifecycle-metoder
 
-Stoppeklokke eller noe sånt?
+- componentDidMount
+  - "runs after the component output has been rendered to the DOM"
+- componentWillUnmount
 
 ---
 
