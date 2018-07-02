@@ -92,7 +92,7 @@ Instead of displaying hard coded messages, one should be able to post new messag
 The committee have found a third-party library, `react-player` to display their videos. The library can be found here:
 https://www.npmjs.com/package/react-player
 
-* Make use `yarn add` and add react-player to the project's dependecies.
+* Make use of `yarn add` and add react-player to the project's dependecies.
 * Import the third-party component and render an embedded youtube video in `<DashBoard />` .
 
 ## Task 9 - ``<GameTimer />``
