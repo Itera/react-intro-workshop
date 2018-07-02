@@ -19,11 +19,15 @@ class GameTimer extends React.Component {
 
   resetTimer = () => this.setState({ seconds: 0 });
 
+  printMinutes = () => (this.state.seconds / 60).toFixed(0);
+
+  printSeconds = () => this.state.seconds % 60;
+
   render() {
     return (
       <div className="game-timer">
         <strong>Timer</strong>
-        {(this.state.seconds / 60).toFixed(0)}:{this.state.seconds % 60}
+        {this.printMinutes()}:{this.printSeconds()}
         <Button onClick={this.resetTimer} name="Reset" />
       </div>
     );
