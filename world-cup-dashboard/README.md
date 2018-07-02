@@ -98,6 +98,7 @@ https://www.npmjs.com/package/react-player
 
 ## Task 9 - ``<GameTimer />``
 ![Game timer](src/content/game_timer.png?raw=true "Game timer") 
+
 Use <strong>state</strong> to tick each second to display minutes and seconds elapsed in the game.
 
 Remember to clear up the timer on unmount;
