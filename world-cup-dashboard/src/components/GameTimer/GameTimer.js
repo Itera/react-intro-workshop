@@ -3,10 +3,9 @@ import './GameTimer.css';
 import Button from '../Button/Button';
 
 class GameTimer extends React.Component {
-  constructor() {
-    super();
-    this.state = { seconds: 0 };
-  }
+  state = {
+    seconds: 0,
+  };
 
   componentDidMount() {
     this.timer = setInterval(() => this.tick(), 1000);

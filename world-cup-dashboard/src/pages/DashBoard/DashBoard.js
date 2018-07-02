@@ -8,13 +8,10 @@ import './DashBoard.css';
 import Button from "../../components/Button/Button";
 
 class Dashboard extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      messages: [],
-      showChat: true,
-    }
-  }
+  state = {
+    messages: [],
+    showChat: true,
+  };
 
   toggleChat = () => this.setState({ showChat: !this.state.showChat });
 

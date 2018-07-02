@@ -4,12 +4,9 @@ import Button from '../Button/Button';
 import './MessageArea.css';
 
 class MessageArea extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      text: '',
-    }
-  }
+  state = {
+    text: '',
+  };
 
   handleOnSendMessage = () => {
     this.props.onSendMessage({ author: this.props.author, text: this.state.text });
