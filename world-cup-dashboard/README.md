@@ -85,12 +85,9 @@ Instead of displaying hard coded messages, one should be able to post new messag
 * `<MessageArea />` requires <strong>author</strong> to be included in <strong>props</strong>.
 * `<MessageArea />` requires <strong>onSendMessage</strong>(function) to be included in <strong>props</strong>. This function should return objects with author and the text inputted on send. E.g
 `{ author: 'Bob', text: 'Hei' }`
-
-
+* Include `<MessageArea />` in `<DashBoard />`, e.g. `<MessageArea onSendMessage={this.yourFunction} author="Kristoffer" />`. 
 * In `<DashBoard />`, use it's <strong>state</strong> to store the messages and pass them to `<ChatBoard />` instead of hard coding them.
-
-
-Save messages in DashBoard.js state to be displayed in ChatBoard
+* When `onSendMessage` in `<MessageArea />` is called, it should add the message object to `<DashBoard />`'s messages.
 
 ## Task 8 - Show video using using third-party component; ``ReactPlayer``
 https://www.npmjs.com/package/react-player
