@@ -1,18 +1,18 @@
 .dashboard-container {
-    background-color: cyan;
+  background-color: cyan;
 }
 
 .dashboard-header {
-    padding: 1em;
-    display: flex;
-    justify-content: center;
+  padding: 1em;
+  display: flex;
+  justify-content: center;
 }
 
 .media-container {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .live-chat {
-    width: 30%;
+  width: 30%;
 }

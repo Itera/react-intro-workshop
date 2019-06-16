@@ -5,11 +5,14 @@ import './MessageArea.css';
 
 class MessageArea extends Component {
   state = {
-    text: '',
+    text: ''
   };
 
   handleOnSendMessage = () => {
-    this.props.onSendMessage({ author: this.props.author, text: this.state.text });
+    this.props.onSendMessage({
+      author: this.props.author,
+      text: this.state.text
+    });
     this.setState({ text: '' });
   };
 
@@ -28,7 +31,7 @@ class MessageArea extends Component {
 
 MessageArea.propTypes = {
   author: PropTypes.string.isRequired,
-  onSendMessage: PropTypes.func.isRequired,
+  onSendMessage: PropTypes.func.isRequired
 };
 
 export default MessageArea;

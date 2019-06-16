@@ -5,7 +5,7 @@ import './GoalCounter.css';
 
 class GoalCounter extends Component {
   state = {
-    counter: 0,
+    counter: 0
   };
 
   increaseScore = () => this.setState({ counter: this.state.counter + 1 });
@@ -19,12 +19,12 @@ class GoalCounter extends Component {
         {this.props.team}: {this.state.counter}
         <Button onClick={this.increaseScore} name="+" />
       </div>
-    )
+    );
   }
 }
 
 GoalCounter.propTypes = {
-  team: PropTypes.string.isRequired,
+  team: PropTypes.string.isRequired
 };
 
 export default GoalCounter;

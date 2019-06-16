@@ -1,10 +1,10 @@
 .game-timer {
-    background-color: lightblue;
-    border: 1px solid blue;
-    display: flex;
-    flex-direction: column;
-    width: 250px;
-    text-align: center;
-    padding: 1em;
-    border-radius: 1em;
+  background-color: lightblue;
+  border: 1px solid blue;
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  text-align: center;
+  padding: 1em;
+  border-radius: 1em;
 }

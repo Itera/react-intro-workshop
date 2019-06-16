@@ -1,8 +1,8 @@
 .chat-board {
-    background: lightgreen;
-    border: 1px solid green;
-    width: 250px;
-    height: 400px;
-    padding: 2em;
-    border-radius: 1em;
+  background: lightgreen;
+  border: 1px solid green;
+  width: 250px;
+  height: 400px;
+  padding: 2em;
+  border-radius: 1em;
 }
