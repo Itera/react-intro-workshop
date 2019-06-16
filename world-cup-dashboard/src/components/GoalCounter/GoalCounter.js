@@ -1,26 +1,22 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Button from '../Button/Button';
 import './GoalCounter.css';
 
-class GoalCounter extends Component {
-  state = {
-    counter: 0
-  };
+function GoalCounter({ team }) {
+  const [counter, setCounter] = useState(0);
 
-  increaseScore = () => this.setState({ counter: this.state.counter + 1 });
+  const increaseScore = () => setCounter(counter => counter + 1);
 
-  decreaseScore = () => this.setState({ counter: this.state.counter - 1 });
+  const decreaseScore = () => setCounter(counter => Math.max(0, counter - 1));
 
-  render() {
-    return (
-      <div className="goal-counter">
-        <Button onClick={this.decreaseScore} name="-" />
-        {this.props.team}: {this.state.counter}
-        <Button onClick={this.increaseScore} name="+" />
-      </div>
-    );
-  }
+  return (
+    <div className="goal-counter">
+      <Button onClick={decreaseScore} name="-" />
+      {team}: {counter}
+      <Button onClick={increaseScore} name="+" />
+    </div>
+  );
 }
 
 GoalCounter.propTypes = {

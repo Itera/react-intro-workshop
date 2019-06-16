@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Button.css';
 
-const Button = ({ onClick, name }) => (
-  <button className="button" onClick={onClick}>
+const Button = ({ onClick, name, ...props }) => (
+  <button className="button" onClick={onClick} {...props}>
     {name}
   </button>
 );

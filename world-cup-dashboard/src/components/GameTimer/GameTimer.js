@@ -12,7 +12,7 @@ class GameTimer extends React.Component {
   }
 
   componentWillUnmount() {
-    clearInterval(this.timer());
+    clearInterval(this.timer);
   }
 
   tick = () => this.setState(prevState => ({ seconds: prevState.seconds + 1 }));

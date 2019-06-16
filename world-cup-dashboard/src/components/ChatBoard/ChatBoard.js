@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import shortid from 'shortid';
 import './ChatBoard.css';
 
 const ChatBoard = ({ title, messages }) => (
@@ -9,7 +8,7 @@ const ChatBoard = ({ title, messages }) => (
     <hr />
     <ul>
       {messages.map(message => (
-        <li key={shortid.generate()}>
+        <li key={message.id}>
           <strong>{message.author}: </strong>
           {message.text}
         </li>
