@@ -1,12 +1,12 @@
 # react-intro-workshop
 
-We are going to create a dashboard for the FIFA World Cup 2018!
+We are going to create a dashboard for the 2019 FIFA Women's World Cup!
 
 # Setting up
 You need to have a recent version of [Node](https://nodejs.org/en/download/) installed.
 This project uses Yarn as the package manager. In other words, to get the application running you need to have Yarn installed to download the packages we you need.
 
-## Mac OSX
+## macOS
 We suggest using homebrew to install Yarn.
 
 ### Install homebrew
