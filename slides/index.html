@@ -25,6 +25,27 @@ class: center, middle
 
 ---
 
+# Hva vi ikke skal snakke om i dag
+
+Dette er bare en liten bit på veien :)
+
+- Universell utforming, semantisk dokumentstruktur osv.
+  - Her må man gjøre grovjobben selv uavhengig av rammeverk.
+  - Viktigere enn hvilket rammeverk man velger!!
+- Web-APIer/webstandarder
+- CSS
+- Byggeverktøy
+- React: routing, datafetching, kompleks håndtering av state
+
+---
+
+# Info før start
+
+- Legger vekt på "funksjonelle" komponenter og hooks i dag
+- Ingenting galt med klassekomponenter. Bruk det gjerne på prosjekt
+
+---
+
 # Agenda
 
 1. Hva er React?
@@ -35,7 +56,6 @@ class: center, middle
 6. Sende data med props
 7. Komponent med state
 8. Komponent med state og eventer
-9. Funksjonelle komponenter
 10. Kombinere komponenter
 11. Liste av komponenter
 12. Forskjellig rendring basert på props/state
@@ -45,7 +65,7 @@ class: center, middle
 
 # Hva er React?🧐
 
-- JavaScript-rammeverk
+- JavaScript-bibliotek
 - Brukes til å bygge brukergrensesnitt
 - Deklarativ komponentmodell (ikke imperativ)
 
@@ -68,7 +88,7 @@ Hva gjør du dersom du ønsker å gjenbruke denne koden andre steder?
 <script>
     incrementCounter = () => {
       let counter = parseInt(document.getElementById("counter").innerHTML);
-      document.getElementById("counter").innerHTML = counter + 1;
+      document.getElementById("counter").innerHTML = `${counter + 1}`;
     }
 </script>
 ```
@@ -85,28 +105,27 @@ React lar oss bygge gjenbrukbare og små komponenter vi kan kombinere sammen!�
 
 # Hvordan fungerer React?🤯
 
-- DOM vs virtuell DOM 
+- DOM vs virtuell DOM
 - DOM er imperativ og kostbar
 - Virtuell DOM er deklarativ og lite kostbar
 - React bestemmer når DOM må oppdateres
+- Enveis dataflyt (topp til bunn)
 
 ---
 
 # Min første React-komponent
 
 ```html
-<div id="root"></div>
+<div id="root"></div> //index.html
 ```
 
 ```js
-import {Component, createElement} from 'React';
+import {createElement} from 'React';
 import {render} from 'ReactDOM';
 
-class SimpleComponent extends Component {
-  render() {
-    //element type, properties, children
-    return createElement('div', null, 'Hallo på do hehe:P');
-  }
+function SimpleComponent() {
+  //element type, properties, children
+  return createElement('div', null, 'Hallo på do hehe:P');
 }
 
 render(SimpleComponent, document.getElementById('root'));
@@ -121,8 +140,7 @@ Slitsomt å skrive funksjonskall med `createElement` hele tiden.
 Løsning? HTML i JavaScript! JSX blir syntaktisk sukker.
 
 ```js
-render() {
-  return <div>Hallo på do hehe:P</div>;
+  return (<div>Hallo på do hehe:P</div>);
 }
 
 ```
@@ -135,13 +153,13 @@ Dette kompilerer til et createElement-kall.
 La oss utvide vår enkle komponent:
 
 ```js
-class SimpleComponent extends Component {
-  render() {
-    return <div>hallo på do {this.props.name} hehe:P</div>;
-  }
+function SimpleComponent() {
+  return (<div>hallo på do {this.props.name} hehe:P</div>);
+  // createElement('div', null, `hallo på do ${this.props.name} hehe:O`);
 }
 
 render(<SimpleComponent name="Itera" />, document.getElementById('root'));
+// createElement(SimpleComponent, {name: 'Itera'}, null);
 ```
 
 Tre nye konsepter:
@@ -166,85 +184,70 @@ Det gjør at komponenter som bruker props alltid oppfører seg likt.
 # Komponent med state
 
 ```js
-class StatefulComponent extends Component {
-  constructor() {
-    this.state = { name: "itera" };
-  }
+import {useState} from 'react';
 
-  render() {
-    return <div>hallo på do {this.props.state} hehe:P</div>;
-  }
+function ComponentWithState() {
+  const [name, setName] = useState("andreas");
+  // returner en array (array[0] = name og array[1] = setName)
+
+  return (<div>hallo på do {name} hehe:P</div>);
 }
 ```
 
-- `state` kan endres med `this.setState()`
-    - f.eks: `this.setState({name: "nytt navn"});`
-- oppdatering av `state` gjør at `render` kalles på nytt
+- `state` kan endres med `setName`
+    - f.eks: `setName("andreasv2")`
+- oppdatering av `state` vil føre til at komponenten rendrer på nytt
 
 ---
 
 # Komponent med state og eventer
 
 ```js
-class StatefulComponent extends Component {
-  constructor() {
-    this.state = { name: "itera" };
-  }
+function ComponentWithStateAndEvent() {
+  const [name, setName] = useState("");
+  // nøtt: hvorfor kan vi ikke bare bruke en variabel for name her?
 
-  handleChange = (event) => {
-    this.setState({name: event.target.value});
-  }
+  const handleChange = (event) => {
+    setName(event.target.value);
+  };
 
-  render() {
-    return (
-      <div>
-        <div>hallo på do {this.props.state} hehe:P</div>;
-        <input value={this.state.name} onChange={this.handleChange} />
-      </div>
-    );
-  }
+  return (
+    <div>
+      <div>hallo på do {this.props.state} hehe:P</div>;
+      <input
+        type="text"
+        value={name}
+        onChange={handleChange}
+      />
+    </div>
+  );
 }
 
 ```
 
 ---
 
-# Funksjonelle komponenter
-
-Komponenter uten state kan forenkles til:
-
-```js
-
-function SimpleComponent(props) => (
-  <div>hallo på do {props.name} hehe:P</div>
-);
-// Usage: <SimpleComponent name="hallo" />
-```
-- komponenter uten state er ofte barn av komponenter med state
-
----
-
 # Gjenbruke og kombinere komponenter
 
-```js
-function Company({company}) => (
+```jsx
+const Company = ({company}) => (
   <div>You work in {company}</div>
 );
 
-function Hello({name, company}) => (
-  <Fragment>
+const Hello = ({name, company}) => (
+  <>
     <div>Hello, {name}!</div>
     <Company company={company} />
-  </Fragment>
+  </>
 );
 
 function HelloApp() {
   return (
-    <Fragment>
+    <>
       <Hello name="Andreas" company="Staten" />
       <Hello name="Kristoffer" company="Itera" />
       <Hello name="Per" company="Facebook" />
-    </Fragment>
+    </>
   );
 };
 ```
@@ -291,14 +294,14 @@ function Greeting({isLoggedIn}) {
 ```js
 function Mailbox({unreadMessages}) {
   return (
-    <div>
+    <>
       <h1>Hello!</h1>
       {unreadMessages.length > 0 &&
         <h2>
           You have {unreadMessages.length} unread messages.
         </h2>
       }
-    </div>
+    </>
   );
 }
 ```
@@ -324,12 +327,77 @@ function WarningBanner({warn}) {
 
 ---
 
-# Lifecycle-metoder
+# Hooks
 
-- componentDidMount
-  - "runs after the component output has been rendered to the DOM"
-- componentWillUnmount
+Motivasjon: gjøre det enkelt å dele logikk med tilstand mellom flere
+komponenter.
 
+- useState - denne har vi sett på
+- useEffect - "perform side effects"
+  - hente asynkron data
+  - manuelt oppdatere DOM
+- useRef
+- useContext
+
+---
+
+## useEffect
+
+- kjøres hver gang rett etter en komponent rendres
+
+Eks:
+
+```js
+function ComponentWithStateAndEventAndEffect() {
+  const [name, setName] = useState("");
+
+  const handleChange = (event) => { setName(event.target.value); };
+
+  // oppdaterer tittelen til dokumentet etter hver render!
+  useEffect(() => {
+    document.title = `Navnet er ${name}`;
+  });
+
+  return (
+    <>
+      <div>hallo på do {this.props.state} hehe:P</div>;
+      <input type="text" value={name} onChange={handleChange} />
+    </>
+  );
+}
+
+```
+---
+
+Hva om vi ønsker å oppdatere tittelen kun når `name` endrer seg?
+Eks:
+
+```jsx
+  // Oppdaterer tittelen til dokumentet hver gang `name` endrer seg
+  // etter en render
+  useEffect(() => {
+    document.title = `Navnet er ${name}`;
+  }, [name]);
+
+  // Hva skjer dersom vi putter et tomt array inn i useEffect?
+  useEffect(() => {
+    document.title = `Navnet er ${name}`;
+  }, []);
+
+  // Da blir effekten kjørt kun ved "oppstart" (første render).
+
+```
+
+---
+### useEffect-oppsummering
+
+En effekt synkroniserer med tilstanden til komponenten:
+
+```js
+useEffect(fn) // alle tilstander
+useEffect(fn, []) // ingen tilstander
+useEffect(fn, [disse, tilstandene]) // `disse` og `tilstandene` sin tilstand
+```
 ---
 
 # Ressurser/linker
