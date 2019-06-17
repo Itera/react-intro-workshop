@@ -4,7 +4,7 @@ import Button from '../Button/Button';
 
 class GameTimer extends React.Component {
   state = {
-    seconds: 0,
+    seconds: 0
   };
 
   componentDidMount() {
@@ -12,7 +12,7 @@ class GameTimer extends React.Component {
   }
 
   componentWillUnmount() {
-    clearInterval(this.timer());
+    clearInterval(this.timer);
   }
 
   tick = () => this.setState(prevState => ({ seconds: prevState.seconds + 1 }));
