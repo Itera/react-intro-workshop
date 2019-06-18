@@ -1,5 +1,5 @@
 import React from 'react';
-import footballLogo from '../../content/football.svg';
+import footballLogo from '../../content/logo.svg';
 import './AppHeader.css';
 
 const AppHeader = () => (
