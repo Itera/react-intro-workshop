@@ -1,37 +1,45 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './GameTimer.css';
 import Button from '../Button/Button';
 
-class GameTimer extends React.Component {
-  state = {
-    seconds: 0
-  };
+function GameTimer() {
+  const [seconds, setSeconds] = useState(0);
 
-  componentDidMount() {
-    this.timer = setInterval(() => this.tick(), 1000);
-  }
+  useInterval(() => {
+    setSeconds(seconds => seconds + 1);
+  }, 1000);
 
-  componentWillUnmount() {
-    clearInterval(this.timer);
-  }
+  const reset = () => setSeconds(0);
 
-  tick = () => this.setState(prevState => ({ seconds: prevState.seconds + 1 }));
+  const mm = (seconds / 60).toFixed(0);
+  const ss = seconds % 60;
 
-  resetTimer = () => this.setState({ seconds: 0 });
+  return (
+    <div className="game-timer">
+      <strong>Timer</strong>
+      {mm}:{ss}
+      <Button onClick={reset} name="Reset" />
+    </div>
+  );
+}
 
-  printMinutes = () => (this.state.seconds / 60).toFixed(0);
+function useInterval(callback, delay) {
+  const savedCallback = useRef();
 
-  printSeconds = () => this.state.seconds % 60;
+  useEffect(() => {
+    savedCallback.current = callback;
+  }, [callback]);
 
-  render() {
-    return (
-      <div className="game-timer">
-        <strong>Timer</strong>
-        {this.printMinutes()}:{this.printSeconds()}
-        <Button onClick={this.resetTimer} name="Reset" />
-      </div>
-    );
-  }
+  useEffect(() => {
+    function tick() {
+      savedCallback.current();
+    }
+
+    if (delay !== null) {
+      let id = setInterval(tick, delay);
+      return () => clearInterval(id);
+    }
+  }, [delay]);
 }
 
 export default GameTimer;
