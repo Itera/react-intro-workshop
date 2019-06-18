@@ -153,9 +153,9 @@ Dette kompilerer til et createElement-kall.
 La oss utvide vår enkle komponent:
 
 ```js
-function SimpleComponent() {
-  return (<div>hallo på do {this.props.name} hehe:P</div>);
-  // createElement('div', null, `hallo på do ${this.props.name} hehe:O`);
+function SimpleComponent(props) {
+  return (<div>hallo på do {props.name} hehe:P</div>);
+  // createElement('div', null, `hallo på do ${props.name} hehe:O`);
 }
 
 render(<SimpleComponent name="Itera" />, document.getElementById('root'));
@@ -165,7 +165,7 @@ render(<SimpleComponent name="Itera" />, document.getElementById('root'));
 Tre nye konsepter:
 - definerer komponenten som en elementtype i JSX
 - sender et navn til komponenten via en property kalt `name`
-- aksesserer `name` med `this.props.name` inne i `{}`
+- aksesserer `name` med `props.name` inne i `{}`
     - alt som er inne i `{}` blir tolket som JavaScript
 
 ---
@@ -175,7 +175,7 @@ Tre nye konsepter:
 Props er:
 - uforanderlige (immutable) 
 
-Ikke lov: `this.props.name = "andreas";`
+Ikke lov: `props.name = "andreas";`
 
 Det gjør at komponenter som bruker props alltid oppfører seg likt. 
 
@@ -213,7 +213,7 @@ function ComponentWithStateAndEvent() {
 
   return (
     <div>
-      <div>hallo på do {this.props.state} hehe:P</div>;
+      <div>hallo på do {name} hehe:P</div>;
       <input
         type="text"
         value={name}
